@@ -23,6 +23,59 @@ Nov. 30, 2024
 
 :::
 
+<section>
+
+### algorithm
+
+Using <i>Kruskal's algorithm</i>, representing the stations & their
+channels as a graph, `G`:
+
+<pre>
+<strong>MINIMUM-CHANNELS</strong> is
+  <u>inputs</u>:  G <- (V, E), where
+             V is all stations & |V| = n
+             E is all channels, with weights w
+           w <- list of weights for ∀ e ∈ E
+  <u>outputs</u>: MST of G
+
+  M <- ∅                          <span class="comment">// init an empty set to hold the MST</span>
+
+  for each v ∈ G.V:               <span class="comment">// build a disjoint set forest</span>
+    MAKE-SET(v)
+
+  E <- list of edges in G.E       <span class="comment">// sort edges by weight</span>
+  SORT(E, increasing by w(e))
+
+  for each u, v in E do           <span class="comment">// loop over all edges</span>
+    if FIND-SET(u) != FIND-SET(v) <span class="comment">// if vertex @ each end of the edge</span>
+                                  <span class="comment">// is not in MST</span>
+      M <- M ∪ {(u,v)}            <span class="comment">// then add edge to MST</span>
+      UNION(u,v)                  <span class="comment">// and mark all v<sup>o</sup> ∈ V connected to u</span>
+                                  <span class="comment">// as connected to all v<sup>o</sup> ∈ V connected</span>
+                                  <span class="comment">// to v</span>
+  return M
+</pre>
+
+</section>
+<section>
+
+### time complexity
+
+Time complexity can be derived from Kruskal's algorithm as well, which has a
+complexity of O(E lg V) in the worst case:
+
+<pre>
+∵ |V| === n,                      <span class="comment">// V is set of n stations</span>
+  |E| === n(n - 1),               <span class="comment">// assuming each station is connected</span>
+                                  <span class="comment">// to every other station</span>
+  T(n) ∈ O(E lg V)                <span class="comment">// from CLRS</span>
+
+  T(n) ∈ O((n(n - 1)) lg n)
+       < O(n<sup>2</sup> lg n)
+
+∴ T(n) ∈ O(n<sup>2</sup> lg n)
+</pre>
+</section>
 </section>
 <section>
 
