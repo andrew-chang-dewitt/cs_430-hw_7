@@ -1,0 +1,49 @@
+blockquote.reply,
+.reply blockquote {
+  border-left-color: var(--colors-dark-light);
+  color: var(--colors-light-dark);
+}
+
+pre,
+code {
+  overflow-x: auto;
+}
+
+.comment,
+.ln {
+  color: var(--colors-accent1);
+}
+
+.k {
+  color: var(--colors-accent2);
+}
+
+@media print {
+  pre,
+  code {
+    overflow-x: hidden;
+    text-wrap: auto;
+  }
+
+  pre {
+    break-inside: avoid;
+  }
+
+  :root {
+    --fonts-size-large: 18pt;
+    --fonts-size-extra-large: 24pt;
+    --fonts-size-huge: 30pt;
+  }
+
+  header {
+    break-inside: avoid;
+    break-after: avoid-page;
+  }
+  header h1 {
+    margin-top: 0;
+  }
+}
+
+strong {
+  font-weight: var(--fonts-weight-serif-bold);
+}
